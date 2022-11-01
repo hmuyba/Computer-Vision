@@ -41,5 +41,28 @@ def umbralizacion_Adaptativa():
         plt.xticks([]), plt.yticks([])
     plt.show()
 
+def umbralizacion_Automatica():
 
-umbralizacion_Simple()
+    img1 = cv2.imread('libro.jpg', 0)
+    img2 = cv2.imread('ciudad.jpg', 0)
+    img3 = cv2.imread('escala.jpg', 0)
+
+    ret1, th1 = cv2.threshold(img1, 100, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    ret2, th2 = cv2.threshold(img2, 40, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    ret3, th3 = cv2.threshold(img3, 100, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+
+    print('Umbral de th1:', ret1)
+    print('Umbral de th2:', ret2)
+    print('Umbral de th3:', ret3)
+
+    images = [img1, th1, img2, th2, img3, th3]
+    titles = ['libro', 'THRESH_OTSU', 'ciudad', 'THRESH_OTSU', 'escala', 'THRESH_OTSU']
+
+    for i in range(6):
+        plt.subplot(3, 2, i + 1)
+        plt.imshow(images[i], 'gray', vmin=0, vmax=255)
+        plt.title(titles[i])
+        plt.xticks([]), plt.yticks([])
+    plt.show()
+
+umbralizacion_Automatica()
