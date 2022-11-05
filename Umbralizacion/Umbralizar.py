@@ -67,4 +67,7 @@ def umbralizacion_Automatica():
         plt.xticks([]), plt.yticks([])
     plt.show()
 
+
+umbralizacion_Demostrativa()
 umbralizacion_Adaptativa()
+umbralizacion_Automatica()
