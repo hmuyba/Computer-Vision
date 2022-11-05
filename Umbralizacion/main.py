@@ -4,9 +4,9 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-def umbralizacion_Simple():
+def umbralizacion_Demostrativa():
 
-    img = cv2.imread('libro.jpg', 0)
+    img = cv2.imread('escala.jpg', 0)
 
     u, th1 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
     u, th2 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY_INV)
@@ -26,26 +26,28 @@ def umbralizacion_Simple():
     plt.show()
     print(u)
 
+
 def umbralizacion_Adaptativa():
 
-    img = cv2.imread('libro.jpg', 0)
+    img = cv2.imread('caballo.jpg', 0)
     th1 = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 11, 2)
-    th2 = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+    u, th2 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
 
     images = [th1, th2]
-    titles = ['ADAPTIVE_THRESH_MEAN_C', 'ADAPTIVE_THRESH_GAUSSIAN_C']
+    labels = ['ADAPTIVE_THRESH_MEAN_C', 'SIMPLE']
     for i in range(2):
         plt.subplot(1, 2, i + 1)
         plt.imshow(images[i], 'gray', vmin=0, vmax=255)
-        plt.title(titles[i])
+        plt.title(labels[i])
         plt.xticks([]), plt.yticks([])
     plt.show()
 
+
 def umbralizacion_Automatica():
 
-    img1 = cv2.imread('libro.jpg', 0)
-    img2 = cv2.imread('ciudad.jpg', 0)
-    img3 = cv2.imread('escala.jpg', 0)
+    img1 = cv2.imread('gato.jpg', 0)
+    img2 = cv2.imread('banana.jpg', 0)
+    img3 = cv2.imread('water_coins.jpg', 0)
 
     ret1, th1 = cv2.threshold(img1, 100, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     ret2, th2 = cv2.threshold(img2, 40, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
@@ -56,7 +58,7 @@ def umbralizacion_Automatica():
     print('Umbral de th3:', ret3)
 
     images = [img1, th1, img2, th2, img3, th3]
-    titles = ['libro', 'THRESH_OTSU', 'ciudad', 'THRESH_OTSU', 'escala', 'THRESH_OTSU']
+    titles = ['gato', 'OTSU', 'banana', 'OTSU', 'monedas', 'OTSU']
 
     for i in range(6):
         plt.subplot(3, 2, i + 1)
@@ -65,4 +67,4 @@ def umbralizacion_Automatica():
         plt.xticks([]), plt.yticks([])
     plt.show()
 
-umbralizacion_Automatica()
+umbralizacion_Adaptativa()
