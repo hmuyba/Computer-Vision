@@ -1,0 +1,6 @@
+en el powershell
+
+python segment.py -i "archivo de imagen" -k "num clusters"
+
+
+python segment.py -i avocado.jpg -k 6
